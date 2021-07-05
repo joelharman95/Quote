@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/spacing_large"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Splash">
+    tools:context=".view.Splash">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvQuote"

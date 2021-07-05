@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/spacing_small"
-    tools:context=".view.MainActivity">
+    tools:context=".view.QuotesActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivMenu"
@@ -14,15 +14,6 @@
         android:padding="@dimen/spacing_small"
         android:src="@drawable/ic_menu"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivShare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_small"
-        android:src="@drawable/ic_share"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -73,40 +64,28 @@
         app:layout_constraintTop_toBottomOf="@+id/tvCount" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCollection"
+        android:id="@+id/rvQuotes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacing_medium"
         android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/tvDailyQuotes"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/actvSearch"
         app:spanCount="2"
         tools:itemCount="11"
         tools:listitem="@layout/layout_category_item" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvNoCollection"
+        android:id="@+id/tvNoQuotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No collection available"
+        android:text="No quotes available"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/rvCollection"
-        app:layout_constraintEnd_toEndOf="@id/rvCollection"
-        app:layout_constraintStart_toStartOf="@id/rvCollection"
-        app:layout_constraintTop_toTopOf="@id/rvCollection" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDailyQuotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingStart="@dimen/spacing_normal"
-        android:paddingEnd="@dimen/spacing_normal"
-        android:text="“Peace begins with a smile.”\n– Mother Teresa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/rvCollection"
-        app:layout_constraintStart_toStartOf="@id/rvCollection" />
+        app:layout_constraintBottom_toBottomOf="@id/rvQuotes"
+        app:layout_constraintEnd_toEndOf="@id/rvQuotes"
+        app:layout_constraintStart_toStartOf="@id/rvQuotes"
+        app:layout_constraintTop_toTopOf="@id/rvQuotes" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBackToTop"
@@ -117,7 +96,7 @@
         android:textColor="@color/black"
         app:backgroundTint="@color/transparent"
         app:cornerRadius="@dimen/spacing_normal"
-        app:layout_constraintBottom_toBottomOf="@id/rvCollection"
+        app:layout_constraintBottom_toBottomOf="@id/rvQuotes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
