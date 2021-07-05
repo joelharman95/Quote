@@ -1,5 +1,8 @@
 package com.dapps.quotes.view
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -38,6 +41,10 @@ class SingleQuotesActivity : AppCompatActivity() {
         }
 
         btnCopy.setOnClickListener {
+            val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData: ClipData =
+                ClipData.newPlainText("quote", "${tvQuote.text}\n${tvAuthor.text}")
+            clipboardManager.setPrimaryClip(clipData)
             btnCopy.background = AppCompatResources.getDrawable(baseContext, R.drawable.bg_copied)
             btnCopy.text = "Copied!!!"
         }
