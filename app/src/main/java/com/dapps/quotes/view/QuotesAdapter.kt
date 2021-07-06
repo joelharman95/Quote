@@ -14,8 +14,8 @@ data class MyQuote(
     val author: String? = null,
 )
 
-class QuotesAdapter(val collectionList: List<MyQuote>, val myQuote: myQuote) :
-    RecyclerView.Adapter<QuotesAdapter.QuotesHolder>() {
+class QuotesAdapter(private val myQuote: myQuote) : RecyclerView.Adapter<QuotesAdapter.QuotesHolder>() {
+    private val collectionList = mutableListOf<MyQuote>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuotesHolder {
         return QuotesHolder(
@@ -29,6 +29,12 @@ class QuotesAdapter(val collectionList: List<MyQuote>, val myQuote: myQuote) :
     }
 
     override fun getItemCount() = collectionList.size
+
+    fun setQuotesList(_collectionList: List<MyQuote>) {
+        collectionList.clear()
+        collectionList.addAll(_collectionList)
+        notifyDataSetChanged()
+    }
 
     inner class QuotesHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bindUI(position: Int) {

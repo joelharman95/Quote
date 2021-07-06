@@ -10,12 +10,13 @@ import kotlinx.android.synthetic.main.layout_category_item.view.*
 typealias myCollection = (MyCollection) -> Unit
 
 data class MyCollection(
-    val category: String? = null,
+    val category: String = "",
     val count: Int? = null,
 )
 
-class CollectionAdapter(val collectionList: List<MyCollection>, val myCollection: myCollection) :
-    RecyclerView.Adapter<CollectionAdapter.CollectionHolder>() {
+class CollectionAdapter(private val myCollection: myCollection) : RecyclerView.Adapter<CollectionAdapter.CollectionHolder>() {
+
+    private val collectionList = mutableListOf<MyCollection>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionHolder {
         return CollectionHolder(
@@ -29,6 +30,12 @@ class CollectionAdapter(val collectionList: List<MyCollection>, val myCollection
     }
 
     override fun getItemCount() = collectionList.size
+
+    fun setCollectionList(_collectionList: List<MyCollection>) {
+        collectionList.clear()
+        collectionList.addAll(_collectionList)
+        notifyDataSetChanged()
+    }
 
     inner class CollectionHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bindUI(position: Int) {

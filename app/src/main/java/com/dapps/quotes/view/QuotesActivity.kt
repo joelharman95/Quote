@@ -2,15 +2,20 @@ package com.dapps.quotes.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import com.dapps.quotes.R
 import com.dapps.quotes.utils.Constants
+import com.dapps.quotes.utils.hideKeyboard
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.btnBackToTop
 import kotlinx.android.synthetic.main.activity_quotes.*
+import kotlinx.android.synthetic.main.activity_quotes.etSearch
+import kotlinx.android.synthetic.main.activity_quotes.ivSearch
 import kotlinx.android.synthetic.main.activity_quotes.tvCount
 import kotlinx.android.synthetic.main.activity_quotes.tvQuote
+import java.util.*
 
 class QuotesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,20 +28,52 @@ class QuotesActivity : AppCompatActivity() {
 
         val myQuotesList = listOf(
             MyQuote("“Be yourself; everyone else is already taken.”", "― Oscar Wilde"),
-            MyQuote("“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”", "― Albert Einstein"),
+            MyQuote(
+                "“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”",
+                "― Albert Einstein"
+            ),
             MyQuote("“So many books, so little time.”", "― Frank Zappa"),
-            MyQuote("“A room without books is like a body without a soul.”",  "― Marcus Tullius Cicero"),
-            MyQuote("“You know you're in love when you can't fall asleep because reality is finally better than your dreams.”", "― Dr. Seuss"),
+            MyQuote(
+                "“A room without books is like a body without a soul.”",
+                "― Marcus Tullius Cicero"
+            ),
+            MyQuote(
+                "“You know you're in love when you can't fall asleep because reality is finally better than your dreams.”",
+                "― Dr. Seuss"
+            ),
             MyQuote("“So many books, so little time.”", "― Frank Zappa"),
-            MyQuote("“A room without books is like a body without a soul.”", "― Marcus Tullius Cicero"),
+            MyQuote(
+                "“A room without books is like a body without a soul.”",
+                "― Marcus Tullius Cicero"
+            ),
         )
-        rvQuotes.adapter = QuotesAdapter(myQuotesList) { myQuote ->
+
+        etSearch.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH)
+                ivSearch.performClick()
+            false
+        }
+        ivSearch.setOnClickListener {
+            (rvQuotes.adapter as QuotesAdapter).setQuotesList(myQuotesList.filter { quote ->
+                (quote.category + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
+                    etSearch.text.toString()
+                )
+            })
+            it.hideKeyboard()
+        }
+        rvQuotes.adapter = QuotesAdapter { myQuote ->
             val intent = Intent(this, SingleQuotesActivity::class.java)
-            intent.putExtra(Constants.QUOTES, Gson().toJson(myQuotesList))
-            intent.putExtra(Constants.COLLECTION_COUNT, quotesCount)
+            val filteredList = myQuotesList.filter { quote ->
+                (quote.category + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
+                    etSearch.text.toString()
+                )
+            }
+            intent.putExtra(Constants.QUOTES, Gson().toJson(filteredList))
+            intent.putExtra(Constants.COLLECTION_COUNT, filteredList.size)
             startActivity(intent)
         }
         rvQuotes.requestFocus()
+        (rvQuotes.adapter as QuotesAdapter).setQuotesList(myQuotesList)
 
         btnBackToTop.setOnClickListener {
             rvQuotes.scrollToPosition(0)
