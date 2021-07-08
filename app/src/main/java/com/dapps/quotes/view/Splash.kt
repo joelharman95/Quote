@@ -23,7 +23,7 @@ class Splash : AppCompatActivity() {
         }
 
         GlobalScope.launch(Dispatchers.Main) {  //  Working on main thread
-//            delay(2000)
+            delay(2000)
             finish()
             startActivity(Intent(this@Splash, MainActivity::class.java))
         }

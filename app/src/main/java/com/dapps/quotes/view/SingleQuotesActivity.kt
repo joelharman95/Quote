@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import com.dapps.quotes.R
 import com.dapps.quotes.utils.Constants
+import com.dapps.quotes.utils.Constants.POSITION
 import com.dapps.quotes.utils.applySpanPo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -23,7 +24,7 @@ class SingleQuotesActivity : AppCompatActivity() {
         val type = object : TypeToken<List<MyQuote>>() {}.type
         val myQuotesList: MutableList<MyQuote> =
             Gson().fromJson(intent.getStringExtra(Constants.QUOTES), type)
-        setQuotes(myQuotesList[0], 0)
+        setQuotes(myQuotesList[intent.getIntExtra(POSITION, 0)], intent.getIntExtra(POSITION, 0))
 
         ivLeft.setOnClickListener {
             if ((tvCount.tag as Int) == 0) {
@@ -52,6 +53,9 @@ class SingleQuotesActivity : AppCompatActivity() {
     }
 
     private fun setQuotes(myQuote: MyQuote, position: Int) {
+        btnCopy.background =
+            AppCompatResources.getDrawable(baseContext, R.drawable.search_view_border)
+        btnCopy.text = getString(R.string.action_copy_quotes)
         tvCount.applySpanPo(
             "${position + 1}",
             R.color.black,

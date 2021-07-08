@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dapps.quotes.R
 import kotlinx.android.synthetic.main.layout_category_item.view.*
 
-typealias myQuote = (MyQuote) -> Unit
+typealias myQuote = (MyQuote, Int) -> Unit
 
 data class MyQuote(
     val category: String? = null,
@@ -43,7 +43,7 @@ class QuotesAdapter(private val myQuote: myQuote) : RecyclerView.Adapter<QuotesA
                     tvCategory.text = collection.category
                     tvCount.text = "${collection.author}"
                     setOnClickListener {
-                        myQuote.invoke(collection)
+                        myQuote.invoke(collection, position)
                     }
                 }
             }

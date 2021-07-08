@@ -98,7 +98,7 @@
         android:padding="@dimen/spacing_small"
         android:text="@string/action_back_to_top"
         android:textColor="@color/black"
-        app:backgroundTint="@color/transparent"
+        app:backgroundTint="@color/card_bg"
         app:cornerRadius="@dimen/spacing_normal"
         app:layout_constraintBottom_toBottomOf="@id/rvQuotes"
         app:layout_constraintEnd_toEndOf="parent"

@@ -9,4 +9,5 @@
         android:width="0.5dp"
         android:color="@color/card_bg" />
     <corners android:radius="@dimen/spacing_medium" />
+    <solid android:color="@color/card_bg"/>
 </shape>

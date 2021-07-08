@@ -61,7 +61,7 @@ class QuotesActivity : AppCompatActivity() {
             })
             it.hideKeyboard()
         }
-        rvQuotes.adapter = QuotesAdapter { myQuote ->
+        rvQuotes.adapter = QuotesAdapter { myQuote, position ->
             val intent = Intent(this, SingleQuotesActivity::class.java)
             val filteredList = myQuotesList.filter { quote ->
                 (quote.category + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
@@ -70,6 +70,7 @@ class QuotesActivity : AppCompatActivity() {
             }
             intent.putExtra(Constants.QUOTES, Gson().toJson(filteredList))
             intent.putExtra(Constants.COLLECTION_COUNT, filteredList.size)
+            intent.putExtra(Constants.POSITION, position)
             startActivity(intent)
         }
         rvQuotes.requestFocus()

@@ -1,4 +1,4 @@
-package com.nis.test
+package com.dapps.quotes.pref
 
 interface IPreferenceManager {
 
