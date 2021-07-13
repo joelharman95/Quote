@@ -11,7 +11,7 @@ typealias myCollection = (MyCollection) -> Unit
 
 data class MyCollection(
     val category: String = "",
-    val count: Int? = null,
+    val count: String? = null,
 )
 
 class CollectionAdapter(private val myCollection: myCollection) : RecyclerView.Adapter<CollectionAdapter.CollectionHolder>() {

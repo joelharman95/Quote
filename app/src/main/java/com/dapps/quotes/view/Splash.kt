@@ -17,15 +17,14 @@ class Splash : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         PreferenceManager(this).apply {
-            //  TODO  ::  ::  Need to add logic to show quotes daily based on date saved on pref
-            tvQuote.text = "Whatever you do, \ndo it well."
-            tvAuthor.text = "- Walt Disney"
+            tvQuote.text = getQuotes()
+            tvAuthor.text = getAuthor()
         }
 
         GlobalScope.launch(Dispatchers.Main) {  //  Working on main thread
             delay(2000)
-            finish()
             startActivity(Intent(this@Splash, MainActivity::class.java))
+            this@Splash.finish()
         }
 
     }

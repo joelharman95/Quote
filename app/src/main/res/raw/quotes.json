@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Motivation",
+    "count": "512",
+    "quotes": [
+      {
+        "quote": "Quote 1 with quthor named",
+        "author": "Name 1"
+      },
+      {
+        "quote": "Quote 2 with quthor named",
+        "author": "Name 2"
+      }
+    ]
+  },
+  {
+    "title": "Love",
+    "count": "152",
+    "quotes": [
+      {
+        "quote": "Quote 3 with quthor named",
+        "author": "Name 3"
+      },
+      {
+        "quote": "Quote 4 with quthor named",
+        "author": "Name 4"
+      }
+    ]
+  },
+  {
+    "title": "Positivity",
+    "count": "512",
+    "quotes": [
+      {
+        "quote": "Quote 5 with quthor named",
+        "author": "Name 5"
+      },
+      {
+        "quote": "Quote 5 with quthor named",
+        "author": "Name 5"
+      }
+    ]
+  },
+  {
+    "title": "Sayings",
+    "count": "50"
+  },
+  {
+    "title": "Family",
+    "count": "250"
+  },
+  {
+    "title": "Life",
+    "count": "45"
+  },
+  {
+    "title": "Good Morning",
+    "count": "259"
+  },
+  {
+    "title": "Good Evening",
+    "count": "257"
+  },
+  {
+    "title": "Good Night",
+    "count": "258"
+  },
+  {
+    "title": "Billionairs",
+    "count": "28"
+  },
+  {
+    "title": "New Year",
+    "count": "280"
+  },
+  {
+    "title": "Funny",
+    "count": "487"
+  }
+]

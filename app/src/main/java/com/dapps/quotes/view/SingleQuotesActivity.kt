@@ -3,9 +3,9 @@ package com.dapps.quotes.view
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import com.dapps.quotes.R
 import com.dapps.quotes.utils.Constants
 import com.dapps.quotes.utils.Constants.POSITION
@@ -46,15 +46,18 @@ class SingleQuotesActivity : AppCompatActivity() {
             val clipData: ClipData =
                 ClipData.newPlainText("quote", "${tvQuote.text}\n${tvAuthor.text}")
             clipboardManager.setPrimaryClip(clipData)
-            btnCopy.background = AppCompatResources.getDrawable(baseContext, R.drawable.bg_copied)
+//            btnCopy.background = AppCompatResources.getDrawable(baseContext, R.drawable.bg_copied)
+            btnCopy.setBackgroundColor(getColor(R.color.card_bg))
+            btnCopy.strokeColor = ColorStateList.valueOf(getColor(R.color.card_bg))
             btnCopy.text = "Copied!!!"
         }
 
     }
 
     private fun setQuotes(myQuote: MyQuote, position: Int) {
-        btnCopy.background =
-            AppCompatResources.getDrawable(baseContext, R.drawable.search_view_border)
+//        btnCopy.background = AppCompatResources.getDrawable(baseContext, R.drawable.search_view_border)
+        btnCopy.setBackgroundColor(getColor(R.color.white))
+        btnCopy.strokeColor = ColorStateList.valueOf(getColor(R.color.black))
         btnCopy.text = getString(R.string.action_copy_quotes)
         tvCount.applySpanPo(
             "${position + 1}",

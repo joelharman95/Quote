@@ -9,6 +9,10 @@ import com.dapps.quotes.utils.Constants.COLLECTION
 import com.dapps.quotes.utils.Constants.COLLECTION_COUNT
 import com.dapps.quotes.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONArray
+import org.json.JSONException
+import java.io.IOException
+import java.nio.charset.Charset
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,20 +20,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val myCollectionList = listOf(
-            MyCollection("Motivation", 512),
-            MyCollection("Love", 152),
-            MyCollection("Positivity", 512),
-            MyCollection("Sayings", 50),
-            MyCollection("Family", 250),
-            MyCollection("Life", 45),
-            MyCollection("Good Morning", 259),
-            MyCollection("Good Evening", 257),
-            MyCollection("Good Night", 258),
-            MyCollection("Billionairs", 28),
-            MyCollection("New Year", 280),
-            MyCollection("Funny", 487),
-        )
+        val myCollectionList = mutableListOf<MyCollection>()
+        try {
+            val jsonArray = JSONArray(getQuotes())
+            for (a in 0 until jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(a)
+                val myCollection = MyCollection(jsonObject.getString("title"), jsonObject.getString("count"))
+                myCollectionList.add(myCollection)
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
 
         etSearch.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH)
@@ -54,9 +55,26 @@ class MainActivity : AppCompatActivity() {
         rvCollection.requestFocus()
         (rvCollection.adapter as CollectionAdapter).setCollectionList(myCollectionList)
 
-        fabToTop.setOnClickListener {
+        btnBackToTop.setOnClickListener {
             rvCollection.scrollToPosition(0)
         }
 
     }
+
+    private fun getQuotes(): String {
+        var json = "[]"
+        try {
+            val inputStream = getResources().openRawResource(R.raw.quotes);
+            val size: Int = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+            json = String(buffer, Charset.defaultCharset())
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return json
+        }
+        return json
+    }
+
 }

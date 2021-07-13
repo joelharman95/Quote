@@ -81,7 +81,7 @@
         android:layout_marginTop="@dimen/spacing_medium"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingBottom="@dimen/spacing_large"
+        android:paddingBottom="@dimen/spacing_100"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/tvDailyQuotes"
         app:layout_constraintTop_toBottomOf="@id/etSearch"
@@ -100,18 +100,6 @@
         app:layout_constraintStart_toStartOf="@id/rvCollection"
         app:layout_constraintTop_toTopOf="@id/rvCollection" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDailyQuotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingStart="@dimen/spacing_normal"
-        android:paddingEnd="@dimen/spacing_normal"
-        android:text="“Peace begins with a smile.”\n– Mother Teresa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/rvCollection"
-        app:layout_constraintStart_toStartOf="@id/rvCollection" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBackToTop"
         android:layout_width="wrap_content"
@@ -125,15 +113,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabToTop"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDailyQuotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_up_arrow"
-        android:visibility="gone"
-        app:backgroundTint="@color/card_bg"
-        app:elevation="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/spacing_normal"
+        android:paddingEnd="@dimen/spacing_normal"
+        android:text="“Peace begins with a smile.”\n– Mother Teresa"
+        app:layout_constraintBottom_toTopOf="@+id/tvAd"
+        app:layout_constraintEnd_toEndOf="@id/rvCollection"
+        app:layout_constraintStart_toStartOf="@id/rvCollection" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="@dimen/spacing_normal"
+        android:paddingEnd="@dimen/spacing_normal"
+        android:text="Whatever ad comes will shown here"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@id/rvCollection"
+        app:layout_constraintStart_toStartOf="@id/rvCollection" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

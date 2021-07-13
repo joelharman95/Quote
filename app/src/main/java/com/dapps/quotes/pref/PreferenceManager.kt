@@ -16,8 +16,26 @@ class PreferenceManager(context: Context) : IPreferenceManager {
 
     override fun getDate() = pref.getString(DATEE, "").toString()
 
+    override fun saveQuotes(quote: String) {
+        pref.edit {
+            putString(QUOTE, quote)
+        }
+    }
+
+    override fun getQuotes() = pref.getString(QUOTE, "Whatever you do, \ndo it well.").toString()
+
+    override fun saveAuthor(author: String) {
+        pref.edit {
+            putString(AUTHOR, author)
+        }
+    }
+
+    override fun getAuthor() = pref.getString(AUTHOR, "- Walt Disney").toString()
+
     companion object {
         const val PREFERENCE_NAME = BuildConfig.APPLICATION_ID;
         const val DATEE = "datee"
+        const val QUOTE = "quote"
+        const val AUTHOR = "author"
     }
 }
