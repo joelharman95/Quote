@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import com.dapps.quotes.R
+import com.dapps.quotes.pref.PreferenceManager
 import com.dapps.quotes.utils.Constants.COLLECTION
-import com.dapps.quotes.utils.Constants.COLLECTION_COUNT
+import com.dapps.quotes.utils.getDateFrom
 import com.dapps.quotes.utils.hideKeyboard
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONArray
-import org.json.JSONException
 import java.io.IOException
 import java.nio.charset.Charset
 import java.util.*
@@ -21,15 +22,43 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val myCollectionList = mutableListOf<MyCollection>()
-        try {
-            val jsonArray = JSONArray(getQuotes())
-            for (a in 0 until jsonArray.length()) {
-                val jsonObject = jsonArray.getJSONObject(a)
-                val myCollection = MyCollection(jsonObject.getString("title"), jsonObject.getString("count"))
-                myCollectionList.add(myCollection)
-            }
-        } catch (e: JSONException) {
-            e.printStackTrace()
+        val type = object : TypeToken<List<MyCollection>>() {}.type
+        myCollectionList.addAll(Gson().fromJson(getQuotes(), type))
+
+        PreferenceManager(this).apply {
+            if (getDate().isNotEmpty()) {
+                val savedDate =
+                    getDate().getDateFrom("EEE MMM dd HH:mm:ss zzz yyyy", "yyyy.MM.dd HH:mm")
+                val currentDate = Date(System.currentTimeMillis()).toString()
+                    .getDateFrom("EEE MMM dd HH:mm:ss zzz yyyy", "yyyy.MM.dd HH:mm")
+                val diff: Long = (currentDate - savedDate)
+                val diffSeconds: Long = diff / 1000
+                val diffMinutes: Long = diff / (60 * 1000)
+                val diffHours: Long = diff / (60 * 60 * 1000)
+                val diffDays: Long = diff / (24 * 60 * 60 * 1000)
+                println("GET__________ $currentDate ________ $savedDate _______ $diffDays")
+                if (diffDays >= 1) {
+                    var saved = false
+                    for (collection in myCollectionList) {
+                        if (saved)
+                            break
+                        for ((index, quotes) in collection.quotes.withIndex()) {
+                            if (quotes.quote.contentEquals(getQuotes())) {
+                                if (index + 1 < collection.quotes.size) {
+                                    saveQuotes(collection.quotes[index + 1].quote)
+                                    saveAuthor(collection.quotes[index + 1].author)
+                                    saved = true
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    saveDate(Date(System.currentTimeMillis()).toString())
+                }
+            } else
+                saveDate(Date(System.currentTimeMillis()).toString())
+
+            tvDailyQuotes.text = getQuotes() + "\n- " + getAuthor()
         }
 
         etSearch.setOnEditorActionListener { v, actionId, event ->
@@ -39,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
         ivSearch.setOnClickListener {
             (rvCollection.adapter as CollectionAdapter).setCollectionList(myCollectionList.filter { collection ->
-                collection.category.toLowerCase(Locale.getDefault()).contains(
+                collection.title.toLowerCase(Locale.getDefault()).contains(
                     etSearch.text.toString()
                 )
             })
@@ -48,8 +77,7 @@ class MainActivity : AppCompatActivity() {
         rvCollection.adapter =
             CollectionAdapter { myCollection ->
                 val intent = Intent(this, QuotesActivity::class.java)
-                intent.putExtra(COLLECTION, myCollection.category)
-                intent.putExtra(COLLECTION_COUNT, myCollection.count)
+                intent.putExtra(COLLECTION, Gson().toJson(myCollection))
                 startActivity(intent)
             }
         rvCollection.requestFocus()

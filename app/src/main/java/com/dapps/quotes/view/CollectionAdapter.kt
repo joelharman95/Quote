@@ -9,11 +9,6 @@ import kotlinx.android.synthetic.main.layout_category_item.view.*
 
 typealias myCollection = (MyCollection) -> Unit
 
-data class MyCollection(
-    val category: String = "",
-    val count: String? = null,
-)
-
 class CollectionAdapter(private val myCollection: myCollection) : RecyclerView.Adapter<CollectionAdapter.CollectionHolder>() {
 
     private val collectionList = mutableListOf<MyCollection>()
@@ -41,7 +36,7 @@ class CollectionAdapter(private val myCollection: myCollection) : RecyclerView.A
         fun bindUI(position: Int) {
             view.apply {
                 collectionList[position].let { collection ->
-                    tvCategory.text = collection.category
+                    tvCategory.text = collection.title
                     tvCount.text = "${collection.count}"
                     setOnClickListener {
                         myCollection.invoke(collection)

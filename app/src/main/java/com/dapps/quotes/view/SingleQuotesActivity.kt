@@ -21,8 +21,8 @@ class SingleQuotesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_quotes)
 
-        val type = object : TypeToken<List<MyQuote>>() {}.type
-        val myQuotesList: MutableList<MyQuote> =
+        val type = object : TypeToken<List<Quotes>>() {}.type
+        val myQuotesList: MutableList<Quotes> =
             Gson().fromJson(intent.getStringExtra(Constants.QUOTES), type)
         setQuotes(myQuotesList[intent.getIntExtra(POSITION, 0)], intent.getIntExtra(POSITION, 0))
 
@@ -54,7 +54,7 @@ class SingleQuotesActivity : AppCompatActivity() {
 
     }
 
-    private fun setQuotes(myQuote: MyQuote, position: Int) {
+    private fun setQuotes(myQuote: Quotes, position: Int) {
 //        btnCopy.background = AppCompatResources.getDrawable(baseContext, R.drawable.search_view_border)
         btnCopy.setBackgroundColor(getColor(R.color.white))
         btnCopy.strokeColor = ColorStateList.valueOf(getColor(R.color.black))
@@ -65,7 +65,7 @@ class SingleQuotesActivity : AppCompatActivity() {
             " Of ${intent.getIntExtra(Constants.COLLECTION_COUNT, 0)}"
         )
         tvCount.tag = position
-        tvQuote.text = myQuote.category
+        tvQuote.text = myQuote.quote
         tvAuthor.text = myQuote.author
     }
 

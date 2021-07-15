@@ -22,11 +22,12 @@ class QuotesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quotes)
 
-        val quotesCount = intent.getIntExtra(Constants.COLLECTION_COUNT, 0)
-        tvQuote.text = intent.getStringExtra(Constants.COLLECTION)
-        tvCount.text = "${quotesCount} Quotes"
+        val myCollection = Gson().fromJson(intent.getStringExtra(Constants.COLLECTION), MyCollection::class.java)
+        val myQuotesList = if (myCollection.quotes.isNullOrEmpty()) listOf() else myCollection.quotes
+        tvQuote.text = myCollection.title
+        tvCount.text = "${myCollection.count} Quotes"
 
-        val myQuotesList = listOf(
+        /*val myQuotesList = listOf(
             MyQuote("“Be yourself; everyone else is already taken.”", "― Oscar Wilde"),
             MyQuote(
                 "“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”",
@@ -46,7 +47,7 @@ class QuotesActivity : AppCompatActivity() {
                 "“A room without books is like a body without a soul.”",
                 "― Marcus Tullius Cicero"
             ),
-        )
+        )*/
 
         etSearch.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH)
@@ -55,7 +56,7 @@ class QuotesActivity : AppCompatActivity() {
         }
         ivSearch.setOnClickListener {
             (rvQuotes.adapter as QuotesAdapter).setQuotesList(myQuotesList.filter { quote ->
-                (quote.category + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
+                (quote.quote + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
                     etSearch.text.toString()
                 )
             })
@@ -64,7 +65,7 @@ class QuotesActivity : AppCompatActivity() {
         rvQuotes.adapter = QuotesAdapter { myQuote, position ->
             val intent = Intent(this, SingleQuotesActivity::class.java)
             val filteredList = myQuotesList.filter { quote ->
-                (quote.category + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
+                (quote.quote + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
                     etSearch.text.toString()
                 )
             }

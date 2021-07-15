@@ -7,15 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dapps.quotes.R
 import kotlinx.android.synthetic.main.layout_category_item.view.*
 
-typealias myQuote = (MyQuote, Int) -> Unit
-
-data class MyQuote(
-    val category: String? = null,
-    val author: String? = null,
-)
+typealias myQuote = (Quotes, Int) -> Unit
 
 class QuotesAdapter(private val myQuote: myQuote) : RecyclerView.Adapter<QuotesAdapter.QuotesHolder>() {
-    private val collectionList = mutableListOf<MyQuote>()
+    private val collectionList = mutableListOf<Quotes>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuotesHolder {
         return QuotesHolder(
@@ -30,7 +25,7 @@ class QuotesAdapter(private val myQuote: myQuote) : RecyclerView.Adapter<QuotesA
 
     override fun getItemCount() = collectionList.size
 
-    fun setQuotesList(_collectionList: List<MyQuote>) {
+    fun setQuotesList(_collectionList: List<Quotes>) {
         collectionList.clear()
         collectionList.addAll(_collectionList)
         notifyDataSetChanged()
@@ -40,7 +35,7 @@ class QuotesAdapter(private val myQuote: myQuote) : RecyclerView.Adapter<QuotesA
         fun bindUI(position: Int) {
             view.apply {
                 collectionList[position].let { collection ->
-                    tvCategory.text = collection.category
+                    tvCategory.text = collection.quote
                     tvCount.text = "${collection.author}"
                     setOnClickListener {
                         myQuote.invoke(collection, position)
