@@ -5,4 +5,5 @@
     <string name="hint_search">Search</string>
     <string name="action_back_to_top">Back To Top</string>
     <string name="action_copy_quotes">Copy Quotes</string>
+    <string name="action_exit">Exit</string>
 </resources>

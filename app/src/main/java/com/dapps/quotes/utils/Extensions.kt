@@ -1,8 +1,11 @@
 package com.dapps.quotes.utils
 
+import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.dapps.quotes.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,4 +39,14 @@ fun String.getDateFrom(from: String, to: String): Long {
 fun String.convertDateToLong(to: String): Long {
     val df = SimpleDateFormat(to, Locale.getDefault())
     return df.parse(this).time
+}
+
+fun Activity.showAlert(msg: String, dialogInterface: DialogInterface.OnClickListener) {
+    val pickDialog = android.app.AlertDialog.Builder(this)
+    pickDialog.setCancelable(false)
+    pickDialog.setPositiveButton(
+        resources.getString(R.string.action_exit), dialogInterface
+    )
+    pickDialog.setMessage(msg)
+    pickDialog.show()
 }
