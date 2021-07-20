@@ -24,7 +24,7 @@ class Splash : AppCompatActivity() {
             tvAuthor.text = getAuthor()
         }
 
-        if (verifyInstallerId(this)) {
+        if (verifyInstallerIdd()) {
             showAlert(
                 "Seems the app has not downloaded from play store, please install from play store in order to use"
             ) { dialog, which -> finish() }
