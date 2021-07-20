@@ -43,38 +43,47 @@
   },
   {
     "title": "Sayings",
-    "count": "50"
+    "count": "50",
+    "quotes": []
   },
   {
     "title": "Family",
-    "count": "250"
+    "count": "250",
+    "quotes": []
   },
   {
     "title": "Life",
-    "count": "45"
+    "count": "45",
+    "quotes": []
   },
   {
     "title": "Good Morning",
-    "count": "259"
+    "count": "259",
+    "quotes": []
   },
   {
     "title": "Good Evening",
-    "count": "257"
+    "count": "257",
+    "quotes": []
   },
   {
     "title": "Good Night",
-    "count": "258"
+    "count": "258",
+    "quotes": []
   },
   {
     "title": "Billionairs",
-    "count": "28"
+    "count": "28",
+    "quotes": []
   },
   {
     "title": "New Year",
-    "count": "280"
+    "count": "280",
+    "quotes": []
   },
   {
     "title": "Funny",
-    "count": "487"
+    "count": "487",
+    "quotes": []
   }
 ]

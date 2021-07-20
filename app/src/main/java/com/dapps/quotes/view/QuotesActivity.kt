@@ -22,32 +22,12 @@ class QuotesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quotes)
 
-        val myCollection = Gson().fromJson(intent.getStringExtra(Constants.COLLECTION), MyCollection::class.java)
-        val myQuotesList = if (myCollection.quotes.isNullOrEmpty()) listOf() else myCollection.quotes
+        val myCollection =
+            Gson().fromJson(intent.getStringExtra(Constants.COLLECTION), MyCollection::class.java)
+        val myQuotesList =
+            if (myCollection.quotes.isNullOrEmpty()) listOf() else myCollection.quotes
         tvQuote.text = myCollection.title
         tvCount.text = "${myCollection.count} Quotes"
-
-        /*val myQuotesList = listOf(
-            MyQuote("“Be yourself; everyone else is already taken.”", "― Oscar Wilde"),
-            MyQuote(
-                "“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”",
-                "― Albert Einstein"
-            ),
-            MyQuote("“So many books, so little time.”", "― Frank Zappa"),
-            MyQuote(
-                "“A room without books is like a body without a soul.”",
-                "― Marcus Tullius Cicero"
-            ),
-            MyQuote(
-                "“You know you're in love when you can't fall asleep because reality is finally better than your dreams.”",
-                "― Dr. Seuss"
-            ),
-            MyQuote("“So many books, so little time.”", "― Frank Zappa"),
-            MyQuote(
-                "“A room without books is like a body without a soul.”",
-                "― Marcus Tullius Cicero"
-            ),
-        )*/
 
         etSearch.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH)

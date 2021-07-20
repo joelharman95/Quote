@@ -3,13 +3,15 @@ package com.dapps.quotes.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dapps.quotes.R
 import kotlinx.android.synthetic.main.layout_category_item.view.*
 
 typealias myQuote = (Quotes, Int) -> Unit
 
-class QuotesAdapter(private val myQuote: myQuote) : RecyclerView.Adapter<QuotesAdapter.QuotesHolder>() {
+class QuotesAdapter(private val myQuote: myQuote) :
+    RecyclerView.Adapter<QuotesAdapter.QuotesHolder>() {
     private val collectionList = mutableListOf<Quotes>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuotesHolder {
@@ -35,6 +37,7 @@ class QuotesAdapter(private val myQuote: myQuote) : RecyclerView.Adapter<QuotesA
         fun bindUI(position: Int) {
             view.apply {
                 collectionList[position].let { collection ->
+                    tvCount.setTextColor(ContextCompat.getColor(this.context, R.color.black))
                     tvCategory.text = collection.quote
                     tvCount.text = "${collection.author}"
                     setOnClickListener {

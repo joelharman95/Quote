@@ -58,6 +58,7 @@
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:paddingStart="@dimen/spacing_medium"
+        android:textColor="#B3000000"
         app:layout_constraintCircleRadius="@dimen/spacing_small"
         app:layout_constraintEnd_toEndOf="@id/tvQuote"
         app:layout_constraintStart_toStartOf="@id/tvQuote"
@@ -109,6 +110,7 @@
         android:textColor="@color/black"
         app:backgroundTint="@color/card_bg"
         app:cornerRadius="@dimen/spacing_normal"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@id/rvCollection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -121,6 +123,7 @@
         android:paddingStart="@dimen/spacing_normal"
         android:paddingEnd="@dimen/spacing_normal"
         android:text="“Peace begins with a smile.”\n– Mother Teresa"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/tvAd"
         app:layout_constraintEnd_toEndOf="@id/rvCollection"
         app:layout_constraintStart_toStartOf="@id/rvCollection" />
