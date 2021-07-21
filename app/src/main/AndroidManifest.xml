@@ -11,18 +11,24 @@
         android:theme="@style/NoActionBar">
         <activity
             android:name=".view.MainActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.QuotesActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".view.Splash">
+        <activity
+            android:name=".view.Splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.SingleQuotesActivity" />
+        <activity
+            android:name=".view.SingleQuotesActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

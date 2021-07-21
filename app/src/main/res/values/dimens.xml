@@ -12,6 +12,7 @@
     <dimen name="spacing_12">12dp</dimen>
     <dimen name="spacing_20">20dp</dimen>
     <dimen name="spacing_80">80dp</dimen>
+    <dimen name="search_bar_spacing">46dp</dimen>
 
     <dimen name="size_9">9sp</dimen>
     <dimen name="size_10">10sp</dimen>

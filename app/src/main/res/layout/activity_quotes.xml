@@ -49,6 +49,7 @@
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/search_bar_spacing"
         android:textColor="#B3000000"
         app:layout_constraintCircleRadius="@dimen/spacing_small"
         app:layout_constraintEnd_toEndOf="@id/tvQuote"
