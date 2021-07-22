@@ -10,22 +10,12 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvQuote"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_light"
-        android:lineSpacingExtra="@dimen/spacing_small"
-        android:paddingEnd="@dimen/spacing_extra_large"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_22"
+        style="@style/SplashTextView"
         tools:text="Whatever you do, \ndo it well." />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:fontFamily="@font/nunito_italic"
-        android:textColor="@color/light_gray"
+        style="@style/SplashTextView1"
         tools:text="- Walt Disney" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

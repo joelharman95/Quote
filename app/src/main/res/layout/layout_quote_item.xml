@@ -14,13 +14,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvQuote"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/QuotesTextView"
         android:layout_marginStart="@dimen/spacing_small"
         android:layout_marginTop="@dimen/spacing_normal"
         android:layout_marginBottom="@dimen/spacing_normal"
         android:fontFamily="@font/nunito_light"
-        android:textColor="@color/black"
         tools:text="“Be yourself; everyone else is already taken.”\n― Oscar Wilde" />
 
 </com.google.android.material.card.MaterialCardView>

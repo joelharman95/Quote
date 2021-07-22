@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         ivSearch.setOnClickListener {
             (rvCollection.adapter as CollectionAdapter).setCollectionList(myCollectionList.filter { collection ->
                 collection.title.toLowerCase(Locale.getDefault()).contains(
-                    etSearch.text.toString()
+                    etSearch.text.toString().toLowerCase(Locale.getDefault())
                 )
             })
             it.hideKeyboard()

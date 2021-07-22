@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Quotes" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Quotes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/card_bg</item>
@@ -19,6 +19,36 @@
         <item name="windowActionBar">false</item>
 <!--        <item name="android:windowIsTranslucent">true</item>-->
 <!--        <item name="android:windowFullscreen">true</item>-->
+    </style>
+
+    <style name="SplashTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/nunito_light</item>
+        <item name="android:lineSpacingExtra">@dimen/spacing_small</item>
+        <item name="paddingEnd">@dimen/spacing_extra_large</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/size_22</item>
+    </style>
+
+    <style name="SplashTextView1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/nunito_italic</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:textColor">@color/light_gray</item>
+    </style>
+
+    <style name="CollectionTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#B2000000</item>
+    </style>
+
+    <style name="QuotesTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#000000</item>
     </style>
 
 </resources>

@@ -18,23 +18,19 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/CollectionTextView"
             android:layout_marginStart="@dimen/spacing_small"
             android:layout_marginTop="@dimen/spacing_normal"
             android:fontFamily="@font/nunito_regular"
-            android:textColor="@color/light_gray"
             android:textSize="@dimen/size_16"
             tools:text="Motivation" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/CollectionTextView"
             android:layout_marginStart="@dimen/spacing_small"
             android:layout_marginBottom="@dimen/spacing_normal"
             android:fontFamily="@font/nunito_extra_light"
-            android:textColor="@color/light_gray"
             android:textSize="@dimen/size_12"
             tools:text="512" />
 

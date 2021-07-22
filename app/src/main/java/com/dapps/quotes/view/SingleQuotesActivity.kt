@@ -48,6 +48,7 @@ class SingleQuotesActivity : AppCompatActivity() {
             clipboardManager.setPrimaryClip(clipData)
 //            btnCopy.background = AppCompatResources.getDrawable(baseContext, R.drawable.bg_copied)
             btnCopy.setBackgroundColor(getColor(R.color.card_bg))
+            btnCopy.setTextColor(getColor(R.color.white))
             btnCopy.strokeColor = ColorStateList.valueOf(getColor(R.color.light_gray))
             btnCopy.text = "Copied!!!"
         }
@@ -59,6 +60,7 @@ class SingleQuotesActivity : AppCompatActivity() {
         btnCopy.setBackgroundColor(getColor(R.color.white))
         btnCopy.strokeColor = ColorStateList.valueOf(getColor(R.color.light_gray))
         btnCopy.text = getString(R.string.action_copy_quotes)
+        btnCopy.setTextColor(getColor(R.color.black))
         tvCount.applySpanPo(
             "${position + 1}",
             R.color.black,
