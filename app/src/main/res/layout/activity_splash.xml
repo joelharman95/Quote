@@ -12,6 +12,7 @@
         android:id="@+id/tvQuote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_light"
         android:lineSpacingExtra="@dimen/spacing_small"
         android:paddingEnd="@dimen/spacing_extra_large"
         android:textColor="@color/black"
@@ -23,6 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
+        android:fontFamily="@font/nunito_italic"
+        android:textColor="@color/light_gray"
         tools:text="- Walt Disney" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

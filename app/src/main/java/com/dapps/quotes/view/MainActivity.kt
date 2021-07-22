@@ -2,8 +2,11 @@ package com.dapps.quotes.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dapps.quotes.R
 import com.dapps.quotes.pref.PreferenceManager
 import com.dapps.quotes.utils.Constants.COLLECTION
@@ -24,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         val myCollectionList = mutableListOf<MyCollection>()
         val type = object : TypeToken<List<MyCollection>>() {}.type
         myCollectionList.addAll(Gson().fromJson(getQuotes(), type))
+
+        val count = myCollectionList.map { it.count.toInt() }.sum()
+        tvCount.text = "${myCollectionList.size} Categories, $count Quotes"
 
         PreferenceManager(this).apply {
             if (getDate().isNotEmpty()) {
@@ -55,8 +61,22 @@ class MainActivity : AppCompatActivity() {
                     }
                     saveDate(Date(System.currentTimeMillis()).toString())
                 }
-            } else
+            } else {
                 saveDate(Date(System.currentTimeMillis()).toString())
+                var saved = false
+                for (collection in myCollectionList) {
+                    if (saved)
+                        break
+                    if (getQuotes().isEmpty()) {
+                        for ((index, quotes) in collection.quotes.withIndex()) {
+                            saveQuotes(collection.quotes[index].quote)
+                            saveAuthor(collection.quotes[index].author)
+                            saved = true
+                            break
+                        }
+                    }
+                }
+            }
 
             tvDailyQuotes.text = getQuotes() + "\n- " + getAuthor()
         }
@@ -82,10 +102,25 @@ class MainActivity : AppCompatActivity() {
             }
         rvCollection.requestFocus()
         (rvCollection.adapter as CollectionAdapter).setCollectionList(myCollectionList)
+        btnBackToTop.visibility = View.GONE
 
         btnBackToTop.setOnClickListener {
             rvCollection.scrollToPosition(0)
+            btnBackToTop.visibility = View.GONE
         }
+
+        rvCollection.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
+                if (firstVisibleItemPosition > 0) {
+                    btnBackToTop.visibility = View.VISIBLE
+                } else {
+                    btnBackToTop.visibility = View.GONE
+                }
+            }
+        })
 
     }
 

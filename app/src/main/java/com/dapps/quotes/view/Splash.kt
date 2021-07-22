@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dapps.quotes.R
 import com.dapps.quotes.pref.PreferenceManager
-import com.dapps.quotes.utils.GoogleAppCheck.verifyInstallerId
 import com.dapps.quotes.utils.showAlert
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +21,10 @@ class Splash : AppCompatActivity() {
         PreferenceManager(this).apply {
             tvQuote.text = getQuotes()
             tvAuthor.text = getAuthor()
+            if (tvQuote.text.isEmpty()) {
+                tvQuote.text = "Whatever you do, \ndo it well."
+                tvAuthor.text = "- Walt Disney"
+            }
         }
 
         if (verifyInstallerIdd()) {

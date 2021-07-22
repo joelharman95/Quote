@@ -15,6 +15,7 @@
         android:layout_marginStart="@dimen/spacing_large"
         android:layout_marginTop="@dimen/spacing_large"
         android:layout_marginEnd="@dimen/spacing_large"
+        android:fontFamily="@font/nunito_light"
         android:gravity="center"
         android:textSize="@dimen/size_24"
         tools:text="01 Of 512" />
@@ -24,19 +25,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:fontFamily="@font/nunito_light"
         android:lineSpacingExtra="@dimen/spacing_small"
         android:textColor="@color/black"
         android:textSize="@dimen/size_22"
         tools:text="“Be yourself; everyone else is already taken.”" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <!--<androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvQuote"
         android:layout_marginTop="@dimen/spacing_small"
         android:textColor="@color/black"
-        tools:text="- Oscar Wilde" />
+        tools:text="- Oscar Wilde" />-->
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivLeft"
@@ -63,14 +65,17 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/white"
-        android:paddingStart="@dimen/spacing_12"
-        android:paddingEnd="@dimen/spacing_12"
+        android:fontFamily="@font/nunito_light"
+        android:paddingStart="@dimen/spacing_normal"
+        android:paddingTop="@dimen/spacing_12"
+        android:paddingEnd="@dimen/spacing_normal"
+        android:paddingBottom="@dimen/spacing_12"
         android:text="@string/action_copy_quotes"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:cornerRadius="@dimen/spacing_medium"
         app:elevation="0dp"
-        app:strokeColor="@color/black"
-        app:strokeWidth="0.5dp" />
+        app:strokeColor="@color/light_gray"
+        app:strokeWidth="0.4dp" />
 
 </RelativeLayout>

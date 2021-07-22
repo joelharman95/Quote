@@ -22,7 +22,7 @@ class PreferenceManager(context: Context) : IPreferenceManager {
         }
     }
 
-    override fun getQuotes() = pref.getString(QUOTE, "Whatever you do, \ndo it well.").toString()
+    override fun getQuotes() = pref.getString(QUOTE, "").toString()
 
     override fun saveAuthor(author: String) {
         pref.edit {
@@ -30,7 +30,7 @@ class PreferenceManager(context: Context) : IPreferenceManager {
         }
     }
 
-    override fun getAuthor() = pref.getString(AUTHOR, "- Walt Disney").toString()
+    override fun getAuthor() = pref.getString(AUTHOR, "").toString()
 
     companion object {
         const val PREFERENCE_NAME = BuildConfig.APPLICATION_ID;

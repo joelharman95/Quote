@@ -2,8 +2,11 @@ package com.dapps.quotes.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dapps.quotes.R
 import com.dapps.quotes.utils.Constants
 import com.dapps.quotes.utils.hideKeyboard
@@ -34,21 +37,20 @@ class QuotesActivity : AppCompatActivity() {
                 ivSearch.performClick()
             false
         }
+        val filteredList = mutableListOf<Quotes>()
+        filteredList.addAll(myQuotesList)
         ivSearch.setOnClickListener {
-            (rvQuotes.adapter as QuotesAdapter).setQuotesList(myQuotesList.filter { quote ->
+            filteredList.clear()
+            filteredList.addAll(myQuotesList.filter { quote ->
                 (quote.quote + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
                     etSearch.text.toString()
                 )
             })
+            (rvQuotes.adapter as QuotesAdapter).setQuotesList(filteredList)
             it.hideKeyboard()
         }
         rvQuotes.adapter = QuotesAdapter { myQuote, position ->
             val intent = Intent(this, SingleQuotesActivity::class.java)
-            val filteredList = myQuotesList.filter { quote ->
-                (quote.quote + " " + quote.author).toLowerCase(Locale.getDefault()).contains(
-                    etSearch.text.toString()
-                )
-            }
             intent.putExtra(Constants.QUOTES, Gson().toJson(filteredList))
             intent.putExtra(Constants.COLLECTION_COUNT, filteredList.size)
             intent.putExtra(Constants.POSITION, position)
@@ -56,10 +58,25 @@ class QuotesActivity : AppCompatActivity() {
         }
         rvQuotes.requestFocus()
         (rvQuotes.adapter as QuotesAdapter).setQuotesList(myQuotesList)
+        btnBackToTop.visibility = View.GONE
 
         btnBackToTop.setOnClickListener {
             rvQuotes.scrollToPosition(0)
+            btnBackToTop.visibility = View.GONE
         }
 
+        rvQuotes.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
+                if (firstVisibleItemPosition > 0) {
+                    btnBackToTop.visibility = View.VISIBLE
+                } else {
+                    btnBackToTop.visibility = View.GONE
+                }
+            }
+        })
     }
+
 }

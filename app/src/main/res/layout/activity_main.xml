@@ -32,10 +32,11 @@
         android:layout_marginStart="@dimen/spacing_large"
         android:layout_marginTop="@dimen/spacing_extra_large"
         android:layout_marginEnd="@dimen/spacing_large"
+        android:fontFamily="@font/nunito_light"
         android:gravity="center"
         android:text="@string/label_quotes_collection"
         android:textColor="@color/black"
-        android:textSize="@dimen/size_30"
+        android:textSize="@dimen/size_32"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -43,10 +44,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
-        android:text="@string/label_quotes_collection_count"
+        android:fontFamily="@font/nunito_extra_light"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@id/tvQuote"
         app:layout_constraintStart_toStartOf="@id/tvQuote"
-        app:layout_constraintTop_toBottomOf="@id/tvQuote" />
+        app:layout_constraintTop_toBottomOf="@id/tvQuote"
+        tools:text="@string/label_quotes_collection_count" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etSearch"
@@ -54,12 +57,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_large"
         android:background="@drawable/search_view_border"
+        android:fontFamily="@font/nunito_extra_light"
         android:hint="@string/hint_search"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:paddingStart="@dimen/spacing_medium"
         android:paddingEnd="@dimen/search_bar_spacing"
-        android:textColor="#B3000000"
+        android:textColor="@color/light_gray"
+        android:textSize="@dimen/size_18"
         app:layout_constraintCircleRadius="@dimen/spacing_small"
         app:layout_constraintEnd_toEndOf="@id/tvQuote"
         app:layout_constraintStart_toStartOf="@id/tvQuote"
@@ -85,7 +90,7 @@
         android:overScrollMode="never"
         android:paddingBottom="@dimen/spacing_100"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/tvDailyQuotes"
+        app:layout_constraintBottom_toTopOf="@+id/btnBackToTop"
         app:layout_constraintTop_toBottomOf="@id/etSearch"
         app:spanCount="2"
         tools:itemCount="11"
@@ -106,28 +111,35 @@
         android:id="@+id/btnBackToTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_light"
         android:padding="@dimen/spacing_small"
+        android:paddingStart="@dimen/spacing_normal"
+        android:paddingEnd="@dimen/spacing_normal"
         android:text="@string/action_back_to_top"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        app:backgroundTint="@color/card_bg"
+        app:backgroundTint="@color/white"
         app:cornerRadius="@dimen/spacing_normal"
-        app:layout_constraintBottom_toBottomOf="@id/rvCollection"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/tvDailyQuotes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/light_gray"
+        app:strokeWidth="0.4dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDailyQuotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_light"
         android:gravity="center"
         android:paddingStart="@dimen/spacing_normal"
         android:paddingEnd="@dimen/spacing_normal"
-        android:text="“Peace begins with a smile.”\n– Mother Teresa"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/tvAd"
         app:layout_constraintEnd_toEndOf="@id/rvCollection"
-        app:layout_constraintStart_toStartOf="@id/rvCollection" />
+        app:layout_constraintStart_toStartOf="@id/rvCollection"
+        tools:text="“Peace begins with a smile.”\n– Mother Teresa" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAd"
