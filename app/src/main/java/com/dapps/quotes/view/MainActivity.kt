@@ -59,23 +59,12 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
+                    if (!saved)
+                        initialQuote(myCollectionList)
                     saveDate(Date(System.currentTimeMillis()).toString())
                 }
             } else {
-                saveDate(Date(System.currentTimeMillis()).toString())
-                var saved = false
-                for (collection in myCollectionList) {
-                    if (saved)
-                        break
-                    if (getQuotes().isEmpty()) {
-                        for ((index, quotes) in collection.quotes.withIndex()) {
-                            saveQuotes(collection.quotes[index].quote)
-                            saveAuthor(collection.quotes[index].author)
-                            saved = true
-                            break
-                        }
-                    }
-                }
+                initialQuote(myCollectionList)
             }
 
             tvDailyQuotes.text = getQuotes() + "\n- " + getAuthor()
@@ -138,6 +127,25 @@ class MainActivity : AppCompatActivity() {
             return json
         }
         return json
+    }
+
+    private fun initialQuote(myCollectionList: MutableList<MyCollection>) {
+        PreferenceManager(this).apply {
+            saveDate(Date(System.currentTimeMillis()).toString())
+            var saved = false
+            for (collection in myCollectionList) {
+                if (saved)
+                    break
+                if (getQuotes().isEmpty()) {
+                    for ((index, quotes) in collection.quotes.withIndex()) {
+                        saveQuotes(collection.quotes[index].quote)
+                        saveAuthor(collection.quotes[index].author)
+                        saved = true
+                        break
+                    }
+                }
+            }
+        }
     }
 
 }
