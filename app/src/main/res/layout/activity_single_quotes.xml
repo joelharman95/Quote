@@ -31,14 +31,15 @@
         android:textSize="@dimen/size_22"
         tools:text="“Be yourself; everyone else is already taken.”" />
 
-    <!--<androidx.appcompat.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvQuote"
         android:layout_marginTop="@dimen/spacing_small"
+        android:fontFamily="@font/nunito_italic"
         android:textColor="@color/black"
-        tools:text="- Oscar Wilde" />-->
+        tools:text="- Oscar Wilde" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivLeft"
