@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dapps.quotes.R
@@ -48,7 +49,7 @@ class SingleQuotesActivity : AppCompatActivity() {
             clipboardManager.setPrimaryClip(clipData)
 //            btnCopy.background = AppCompatResources.getDrawable(baseContext, R.drawable.bg_copied)
             btnCopy.setBackgroundColor(getColor(R.color.card_bg))
-            btnCopy.setTextColor(getColor(R.color.white))
+            btnCopy.setTextColor(Color.parseColor("#000000"))
             btnCopy.strokeColor = ColorStateList.valueOf(getColor(R.color.light_gray))
             btnCopy.text = "Copied!!!"
         }
