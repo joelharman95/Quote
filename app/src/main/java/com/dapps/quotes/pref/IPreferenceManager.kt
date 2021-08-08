@@ -8,5 +8,9 @@ interface IPreferenceManager {
     fun getQuotes(): String
     fun saveAuthor(author: String)
     fun getAuthor(): String
+    fun saveAdCount(count: Int)
+    fun getAdCount(): Int
+    fun saveExpiryTime(time: Long)
+    fun getExpiryTime(): Long
 
 }

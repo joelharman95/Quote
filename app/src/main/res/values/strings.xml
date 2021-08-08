@@ -6,4 +6,6 @@
     <string name="action_back_to_top">Back To Top</string>
     <string name="action_copy_quotes">Copy Quote</string>
     <string name="action_exit">Exit</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
 </resources>

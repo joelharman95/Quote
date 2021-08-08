@@ -1,10 +1,15 @@
 package com.dapps.quotes.utils
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import com.dapps.quotes.BuildConfig
 import com.dapps.quotes.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,4 +54,36 @@ fun Activity.showAlert(msg: String, dialogInterface: DialogInterface.OnClickList
     )
     pickDialog.setMessage(msg)
     pickDialog.show()
+}
+
+fun Activity.shareApp() {
+    val intent = Intent()
+    intent.action = Intent.ACTION_SEND
+    intent.putExtra(
+        Intent.EXTRA_TEXT,
+        "Hello, Check Out our Daily Quotes from Eagle App Buffer. Download it from https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID
+    )
+    intent.type = "text/plain"
+    val shareIntent = Intent.createChooser(intent, null)
+    startActivity(shareIntent)
+}
+
+fun Activity.openBrowser() {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))
+    startActivity(Intent.createChooser(intent, "Choose Your browser"))
+}
+
+fun Activity.openMail() {
+    val intent = Intent(Intent.ACTION_SENDTO)
+    intent.type = "text/plain"
+    intent.data = Uri.parse("mailto:")
+    intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("eagleappbuffer@gmail.com"))
+//    intent.putExtra(Intent.EXTRA_SUBJECT, "Mail Subject")
+//    intent.putExtra(Intent.EXTRA_TEXT, "massage")
+    intent.setPackage("com.google.android.gm")
+    try {
+        startActivity(Intent.createChooser(intent, "Send mail..."))
+    } catch (ex: ActivityNotFoundException) {
+        Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show()
+    }
 }
