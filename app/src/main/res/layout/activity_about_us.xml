@@ -17,6 +17,11 @@
         android:paddingBottom="@dimen/spacing_small"
         android:src="@drawable/ic_left_arrow" />
 
+    <FrameLayout
+        android:id="@+id/flAd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvVersion"
         android:layout_width="wrap_content"

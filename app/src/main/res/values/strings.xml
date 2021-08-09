@@ -8,4 +8,8 @@
     <string name="action_exit">Exit</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+
+    <string name="ad_attribution" translatable="false">Ad</string>
+    <string name="NATIVE_ADS_ADVANCED_UNIT_ID" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+
 </resources>

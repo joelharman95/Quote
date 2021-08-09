@@ -26,6 +26,10 @@ fun View.hideKeyboard() {
     inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }
 
+fun Activity.showToast(msg: String) {
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+}
+
 fun String.getDateFrom(from: String, to: String): Long {
     return try {
         val sdf = SimpleDateFormat(from, Locale.getDefault())
